@@ -18,7 +18,7 @@
 				#content {
 					display: block;
 				}
-				
+
 				#loading-indicator {
 					display: none;
 				}
@@ -45,10 +45,23 @@
 		var loader = document.getElementById('loading-indicator');
 		var content = document.getElementById('content');
 
-		document.addEventListener('DOMContentLoaded', function() {
-			loader.style.display = 'none';
-			content.style.display = 'block';
-		})
+		var head  = document.getElementsByTagName('head')[0];
+
+		function loadCSS(url) {
+			var link  = document.createElement('link');
+			link.rel  = 'stylesheet';
+			link.type = 'text/css';
+			link.href = url;
+			link.media = 'all';
+			head.appendChild(link);
+			return link;
+		}
+
+		loadCSS('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css')
+			.addEventListener('load', function() {
+				loader.style.display = 'none';
+				content.style.display = 'block';
+			});
 	</script>
 	
 </body>
